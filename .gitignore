@@ -1,3 +1,9 @@
+# Docs con secrets reales (Railway env configs)
+docs/railway-env-backend-dev.md
+docs/railway-env-frontend-dev.md
+docs/railway-env-panel-admin-dev.md
+docs/USUARIOS-LOCAL.md
+
 # Dependencies
 node_modules/
 .pnp
