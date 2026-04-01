@@ -29,12 +29,13 @@
 
 ---
 
-## 🏢 Empresas (Panel Admin / API)
+## 🏢 Empresas (Frontend User `:3007`)
 
-| Email | Password | Rol | Empresa | Plan |
-|---|---|---|---|---|
-| `company.techcorp@yopmail.com` | `TechCorp123!` | `client_company` | TechCorp Demo S.A. | Professional |
-| `company.fintech@yopmail.com` | `Fintech123!` | `client_company` | FintechDemo S.A. | Enterprise (Premium) |
+| Email | Password | Rol | Empresa | Plan | companyId en DB |
+|---|---|---|---|---|---|
+| `company.techcorp@yopmail.com` | `TechCorp123!` | `client_company` | TechCorp Demo S.A. | Professional | `69cadae64472eb3363653d27` |
+| `company.fintech@yopmail.com` | `Fintech123!` | `client_company` | FintechDemo S.A. | Enterprise | `69cadae64472eb3363653d29` |
+| `company.admin@sentinel-kyc.com` | `Company123!Admin` | `client_company` | Sentinel Demo Company | Starter | `6944fddd4f969a657afb93c5` |
 
 ---
 
@@ -42,9 +43,8 @@
 
 | Email | Password | Rol | Empresa |
 |---|---|---|---|
-| `user.alice@yopmail.com` | `Alice123!` | `end_user` | TechCorp Demo S.A. |
-| `user.bob@yopmail.com` | `Bob123456!` | `end_user` | TechCorp Demo S.A. |
-| `user.carol@yopmail.com` | `Carol123!` | `end_user` | FintechDemo S.A. |
+| `user@sentinel-kyc.com` | `User123!Demo` | `end_user` | Sentinel Demo Company |
+| `agent@sentinel-kyc.com` | `Agent123!KYC` | `end_user` | Sentinel Demo Company |
 
 ---
 

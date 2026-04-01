@@ -16,23 +16,44 @@ import time
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
+
+def read_port_from_env(project_dir, fallback):
+    """Lee PORT= del .env.local del proyecto. Si no existe, usa fallback."""
+    env_file = os.path.join(project_dir, ".env.local")
+    if not os.path.isfile(env_file):
+        return fallback
+    with open(env_file, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line.startswith("PORT="):
+                return line.split("=", 1)[1].strip()
+    return fallback
+
+
+BACKEND_DIR = os.path.join(ROOT, "sentinel-backend")
+FRONTEND_DIR = os.path.join(ROOT, "sentinel-frontend-user")
+PANEL_DIR = os.path.join(ROOT, "sentinel-panel-admin")
+
+frontend_port = read_port_from_env(FRONTEND_DIR, "3007")
+panel_port = read_port_from_env(PANEL_DIR, "3003")
+
 projects = [
     {
-        "title": "SENTINEL BACKEND :7020",
-        "dir": os.path.join(ROOT, "sentinel-backend"),
+        "title": f"SENTINEL BACKEND :7020",
+        "dir": BACKEND_DIR,
         "cmd": "yarn start:dev",
         "color": "0A",  # verde sobre negro
     },
     {
-        "title": "SENTINEL FRONTEND USER :3007",
-        "dir": os.path.join(ROOT, "sentinel-frontend-user"),
-        "cmd": "pnpm dev",
+        "title": f"SENTINEL FRONTEND USER :{frontend_port}",
+        "dir": FRONTEND_DIR,
+        "cmd": f"pnpm dev -p {frontend_port}",
         "color": "0B",  # amarillo sobre negro
     },
     {
-        "title": "SENTINEL PANEL ADMIN :3003",
-        "dir": os.path.join(ROOT, "sentinel-panel-admin"),
-        "cmd": "pnpm dev",
+        "title": f"SENTINEL PANEL ADMIN :{panel_port}",
+        "dir": PANEL_DIR,
+        "cmd": f"pnpm dev -p {panel_port}",
         "color": "0D",  # magenta sobre negro
     },
 ]
@@ -55,8 +76,8 @@ print()
 print("  Servicios iniciados:")
 print("  • Backend     →  http://localhost:7020/api/v1")
 print("  • Backend     →  http://localhost:7020/api/docs  (Swagger)")
-print("  • Frontend    →  http://localhost:3007")
-print("  • Panel Admin →  http://localhost:3003")
+print(f"  • Frontend    →  http://localhost:{frontend_port}")
+print(f"  • Panel Admin →  http://localhost:{panel_port}")
 print()
 print("  Cierra las ventanas individuales para detener cada servicio.")
 print("=" * 55)
